@@ -1,0 +1,220 @@
+/* Global reset - removes default margins, padding, and sets box-sizing */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+/* Body styling - sets font, minimum height, and padding for page */
+body {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	min-height: 100vh;
+	padding: 20px;
+}
+
+/* Main container - centers content, adds white background and shadow effect */
+.container {
+	max-width: 900px;
+	margin: 0 auto;
+	background: white;
+	border-radius: 15px;
+	box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+	overflow: hidden;
+	position: relative; /* Positioning context for error popup */
+}
+
+/* Page title - gradient background with white text */
+h1 {
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	color: white;
+	padding: 30px;
+	text-align: center;
+	font-size: 2.5em;
+	margin: 0;
+}
+
+/* Movies table - starts invisible, fades in when loaded */
+table#moviesTable {
+	width: 100%;
+	border-collapse: collapse;
+	opacity: 0;
+	transition: opacity .2s ease-in;
+}
+/* Table visible state - applied when movies are loaded */
+table#moviesTable.loaded
+{
+	opacity: 1;
+}
+/* Table header - light gray background */
+thead {
+	background: #f8f9fa;
+}
+
+/* Table header cells - padding, bold text, bottom border */
+th {
+	padding: 15px;
+	text-align: left;
+	font-weight: 600;
+	color: #495057;
+	border-bottom: 2px solid #dee2e6;
+}
+
+/* Last header cell (Actions) - centered text */
+th:last-child {
+	text-align: center;
+}
+
+/* Table data cells - padding and bottom border */
+td {
+	padding: 15px;
+	border-bottom: 1px solid #e9ecef;
+}
+
+/* Table rows - smooth background color transition */
+tr {
+	transition: background-color 0.3s ease;
+}
+
+/* Row hover effect - light gray background on hover */
+tbody tr:hover {
+	background-color: #f8f9fa;
+}
+
+/* Rank column - bold, larger text, purple color */
+.rank {
+	font-weight: bold;
+	font-size: 1.2em;
+	color: #667eea;
+	width: 60px;
+}
+
+/* Movie title column - larger text size */
+.movie-title {
+	font-size: 1.1em;
+	color: #212529;
+}
+
+/* Votes column - centered text with fixed width */
+.votes {
+	text-align: center;
+	width: 120px;
+}
+
+/* Individual vote count spans - inline with margin and bold text */
+.vote-net {
+	margin: 0 5px;
+	font-weight: 600;
+	text-align: center;
+}
+.vote-percent
+{
+	text-align: center;
+}
+/* Upvote count - green color */
+.net-positive {
+	color: #28a745;
+}
+
+/* Downvote count - red color */
+.net-negative {
+	color: #dc3545;
+}
+
+/* Actions column - centered with fixed width */
+.actions {
+	text-align: center;
+	width: 120px;
+}
+
+/* Vote buttons - transparent background with hover transform effect */
+.vote-btn {
+	width: 30px;
+	height: 30px;
+	border: none;
+	font-size: 1.5em;
+	cursor: pointer;
+	padding: 5px 10px;
+	transition: transform 0.2s ease;
+	outline: none;
+}
+/* Vote button stlying for an up vote*/
+button.up
+{
+	background: url('../Assets/thumbsup.png') no-repeat center center;
+	background-size: contain;
+}
+/* Vote button stlying for an up vote*/
+button.down
+{
+	background: url('../Assets/thumbsdown.png') no-repeat center center;
+	background-size: contain;
+}
+/* Button hover effect - scale up to 1.3x size */
+.vote-btn:hover {
+	transform: scale(1.3);
+}
+
+/* Button active/pressed effect - scale down to 0.9x size */
+.vote-btn:active {
+	transform: scale(0.9);
+}
+
+/* Up button hover - slightly brighter */
+.vote-btn.up:hover {
+	filter: brightness(1.2);
+}
+
+/* Down button hover - slightly brighter */
+.vote-btn.down:hover {
+	filter: brightness(1.2);
+}
+
+/* Loading state - disables interactions and reduces opacity */
+.loading {
+	pointer-events: none;
+	opacity: 0.6;
+}
+
+/* Animation for table rows - fade in and slide down effect */
+@keyframes slideIn {
+	from {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* Apply slideIn animation to all table body rows */
+tbody tr {
+	animation: slideIn 0.3s ease;
+}
+
+/* Error popup - positioned below header, overlays content without pushing down */
+.error {
+	position: absolute;
+	top: 90px;
+	left: 0;
+	right: 0;
+	width: 100%;
+	z-index: 1000;
+	background-color: #f8d7da;
+	color: #721c24;
+	padding: 15px 20px;
+	font-weight: 600;
+	box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+	cursor: pointer;
+	transition: opacity 0.3s ease;
+}
+
+/* Error hover effect - slightly transparent */
+.error:hover {
+	opacity: 0.85;
+}
+
+/* Hidden error state - display none */
+.error.hidden {
+	display: none;
+}
